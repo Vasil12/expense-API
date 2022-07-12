@@ -1,5 +1,4 @@
 const { expense } = require("../models");
-console.log(expense);
 exports.get = async (req, res) => {
     try {
       const all = await expense.findAll();
