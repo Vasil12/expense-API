@@ -1,17 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
-    const list = sequelize.define("vaso",
+    const expense = sequelize.define("expenses",
       { 
-        name: {
+        shop: {
           type: Sequelize.STRING
         },
-        price: {
+        cost: {
           type: Sequelize.INTEGER
-        },
-        date: {
-          type: Sequelize.DATE
         }
-      },
-      {timestamps: false}
+      }
     )
-    return list;
+    return expense;
   }

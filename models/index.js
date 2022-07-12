@@ -13,14 +13,6 @@ const sequelize = new Sequelize(DB, USER, PASSWORD, {
     }
   }
  )
+const expense = require("./expense.model")(sequelize, Sequelize);
 
- const auth = async () => {
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-      } catch (error) {
-        console.error('Unable to connect to the database:', error);
-      }
- }
- 
-module.exports = {auth}
+module.exports = {expense}
