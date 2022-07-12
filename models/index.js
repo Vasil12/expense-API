@@ -14,13 +14,7 @@ const sequelize = new Sequelize(DB, USER, PASSWORD, {
   }
  )
 
- const auth = async () => {
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-      } catch (error) {
-        console.error('Unable to connect to the database:', error);
-      }
- }
- 
-module.exports = {auth}
+ const expanse = require("./expense.model")(sequelize, Sequelize);
+
+
+module.exports = {expanse, sequelize, Sequelize};
