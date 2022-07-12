@@ -1,0 +1,34 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.21.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vasil12/Expenses-Api.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Vasil12/Expenses-Api/issues"
+  },
+  "homepage": "https://github.com/Vasil12/Expenses-Api#readme",
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "prettier": "2.7.1"
+  },
+  "description": ""
+}
