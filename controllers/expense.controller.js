@@ -10,13 +10,12 @@ exports.get = async (req, res) => {
   }
 
   exports.add = async (req, res) => {
-    const { shop } = req.body;
-    const { cost } = req.body;
+    const { shop,cost } = req.body;
     if (!shop || !cost) {
       res.status(422);
       return res.send({answer: "Shop name or price input is not defined."});
     }  
-    if (cost < 0 && isNaN(cost)) {
+    if (cost < 0 || isNaN(cost)) {
         res.status(422);
         return res.send({answer: "Cost must be a positive number!"});
     }
