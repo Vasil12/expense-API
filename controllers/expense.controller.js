@@ -33,19 +33,16 @@ exports.get = async (req, res) => {
     }
   }
 
-  exports.remove = (req, res) => {
+  exports.remove = async (req, res) => {
     const { id } = req.params;
     if (!id.trim()) {
-      res.status(422).send({answer: "invalid id"})
+      res.status(422).send({ answer: "invalid id" });
     }
-    expense.destroy({where: {id}})
-    .then(async(removed) =>  {
-      if(removed) {
-        const all = await expense.findAll();
-        return res.send(all);
-      }
-      return res.status(404).send({answer: "row not found"})
-    }).catch(err => {
-      res.status(422).send({answer: err});
-    })
-  }
+    try {
+      const remove = await expense.destroy({ where: { id } });
+      if (remove) return await exports.get(req, res);
+      return res.status(404).send({ answer: "Row not found" });
+    } catch (error) {
+      return res.status(422).send({ answer: error });
+    }
+  };
