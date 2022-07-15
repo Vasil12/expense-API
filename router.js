@@ -5,5 +5,8 @@ module.exports = (app) => {
     router.route("/")
     .get(expansecontroller.get);
 
+    router.route("/")
+    .post(expansecontroller.add);
+
     app.use(router);
 }
