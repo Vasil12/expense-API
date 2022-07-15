@@ -7,6 +7,9 @@ module.exports = (app) => {
 
     router.route("/")
     .post(expansecontroller.add);
+    
+    router.route("/:id")
+    .delete(expansecontroller.remove);
 
     app.use(router);
 }
