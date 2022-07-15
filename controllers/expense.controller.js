@@ -10,19 +10,20 @@ exports.get = async (req, res) => {
   }
 
   exports.add = async (req, res) => {
+    const arrayOfErrors =[];
     const { shop,cost } = req.body;
     if (!shop || !cost) {
       res.status(422);
-      return res.send({answer: "Shop name or price input is not defined."});
+      arryaOfError.push("Shop name or cost input is not defined.");
     }  
     if (cost < 0 || isNaN(cost)) {
         res.status(422);
-        return res.send({answer: "Cost must be a positive number!"});
+        arryaOfError.push("Cost must be a positive number!");
     }
     try {
       const newInstance = await expanse.create(req.body);
       return newInstance && (await this.get(req, res));
     } catch (error) {
-      return res.status(422).send({ answer: error })
+      return res.status(422).send({ answer: arrayOfErrors })
     }
   }
