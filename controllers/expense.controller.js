@@ -32,3 +32,17 @@ exports.get = async (req, res) => {
       return res.status(422).send({ answer: error })
     }
   }
+
+  exports.remove = async (req, res) => {
+    const { id } = req.params;
+    if (!id.trim()) {
+      res.status(422).send({ answer: "invalid id" });
+    }
+    try {
+      const remove = await expense.destroy({ where: { id } });
+      if (remove) return await exports.get(req, res);
+      return res.status(404).send({ answer: "Row not found" });
+    } catch (error) {
+      return res.status(422).send({ answer: error });
+    }
+  };
