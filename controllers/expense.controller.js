@@ -62,13 +62,13 @@ exports.updateInstance = async (req, res) => {
     }
     if (cost) {
       if (cost < 0 || Number.isNaN(cost)) {
-        arrayOfErrors.push('Cost must be a positive number.');
+        arrayOfErrors.push('Cost must be a positive number !.');
       } else {
         valueKeys.cost = cost;
       }
     }
     if (shop) {
-      if (!shop) arrayOfErrors.push('Name cannot be empty.');
+      if (!shop) arrayOfErrors.push(' Shop name cannot be empty !.');
       else valueKeys.shop = shop;
     }
 
