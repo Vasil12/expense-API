@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const { expense } = require('../models');
 
 exports.get = async (req, res) => {
@@ -46,5 +47,45 @@ exports.remove = async (req, res) => {
     return res.status(404).send({ answer: 'Row not found' });
   } catch (error) {
     return res.status(422).send({ answer: error });
+  }
+};
+
+exports.updateInstance = async (req, res) => {
+  const { id } = req.params;
+  const { shop, cost } = req.body;
+  const arrayOfErrors = [];
+  const valueKeys = {};
+
+  if (id) {
+    if (!shop && !cost) {
+      return res.status(422).send({ answer: ' Pleas define at least one input!.' });
+    }
+    if (cost) {
+      if (cost < 0 || Number.isNaN(cost)) {
+        arrayOfErrors.push('Cost must be a positive number.');
+      } else {
+        valueKeys.cost = cost;
+      }
+    }
+    if (shop) {
+      if (!shop) arrayOfErrors.push('Name cannot be empty.');
+      else valueKeys.shop = shop;
+    }
+
+    if (arrayOfErrors.length) {
+      return res.status(422).send({ answer: arrayOfErrors });
+    }
+
+    try {
+      const [result] = await expense.update(valueKeys, {
+        where: { id },
+      });
+      if (result === 1) {
+        return await this.get(req, res);
+      }
+      return res.status(404).send({ answer: 'Instance not found.' });
+    } catch (error) {
+      return res.status(422).send({ answer: error });
+    }
   }
 };
