@@ -1,5 +1,8 @@
-/* eslint-disable consistent-return */
 const { expense } = require('../models');
+
+const {
+  expense,
+} = require('../models');
 
 exports.get = async (req, res) => {
   try {
@@ -13,12 +16,10 @@ exports.get = async (req, res) => {
 exports.add = async (req, res) => {
   const arrayOfErrors = [];
   const { shop, cost } = req.body;
-
   if (!shop && !cost) {
-    return res
-      .status(422)
-      .send({ answer: 'Shop name and cost input is not defined.' });
+    return res.status(422).send({ answer: 'Shop name and cost input is not defined.' });
   }
+
   if (cost < 0 || Number.isNaN(cost)) {
     arrayOfErrors.push('Cost must be a positive number!');
   }
@@ -35,7 +36,6 @@ exports.add = async (req, res) => {
     return res.status(422).send({ answer: error });
   }
 };
-
 exports.remove = async (req, res) => {
   const { id } = req.params;
   if (!id.trim()) {
