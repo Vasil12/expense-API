@@ -58,17 +58,17 @@ exports.updateInstance = async (req, res) => {
 
   if (id) {
     if (!shop && !cost) {
-      return res.status(422).send({ answer: ' Pleas define at least one input!.' });
+      return res.status(422).send({ answer: ' Please define at least one input!.' });
     }
     if (cost) {
       if (cost < 0 || Number.isNaN(cost)) {
-        arrayOfErrors.push('Cost must be a positive number !.');
+        arrayOfErrors.push('Cost must be a positive number !');
       } else {
         valueKeys.cost = cost;
       }
     }
     if (shop) {
-      if (!shop) arrayOfErrors.push(' Shop name cannot be empty !.');
+      if (!shop.trim()) arrayOfErrors.push(' Shop name cannot be empty !.');
       else valueKeys.shop = shop;
     }
 
@@ -87,5 +87,7 @@ exports.updateInstance = async (req, res) => {
     } catch (error) {
       return res.status(422).send({ answer: error });
     }
+  } else {
+    return res.status(422).send('Invalid ID');
   }
 };
