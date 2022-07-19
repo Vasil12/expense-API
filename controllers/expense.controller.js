@@ -1,8 +1,4 @@
-const { expense } = require('../models');
-
-const {
-  expense,
-} = require('../models');
+const expense = require('../models');
 
 exports.get = async (req, res) => {
   try {

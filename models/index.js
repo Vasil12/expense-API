@@ -16,4 +16,4 @@ const sequelize = new Sequelize(DB, USER, PASSWORD, {
 });
 const expense = require('./expense.model')(sequelize, Sequelize);
 
-module.exports = { expense };
+module.exports = expense;
